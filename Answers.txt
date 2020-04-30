@@ -1,0 +1,130 @@
+1. Select all Actors from the table.
+
+SELECT first_name,last_name FROM actor;
+
+
+2. Find the actor with the first name “John”.
+
+SELECT * FROM actor WHERE first_name='JOHN';
+
+
+3. Find all actors with the surname “Neeson”.
+
+SELECT * FROM actor WHERE last_name='NEESON';
+
+
+4. Find all actors with Id numbers divisible by 10.
+
+SELECT * FROM actor WHERE actor_id%10 = 0;
+
+
+5. What is the description of the movie with ID of 100?
+
+SELECT title, description FROM film WHERE film_id=100;
+
+
+6. Find every movie with a rating of “R”.
+
+SELECT rating, title FROM film WHERE rating='r';
+
+
+7. Find every movie except those with a rating of “R”.
+
+SELECT rating, title FROM film WHERE rating!='r';
+
+
+8. Find the 10 shortest movies.
+
+SELECT film_id, title, length FROM film ORDER BY length LIMIT 10;
+
+
+9. Now return only the movie titles.
+
+
+SELECT title FROM film ORDER BY length LIMIT 10;
+
+
+10. Find all movies with Deleted Scenes.
+
+SELECT title FROM film WHERE special_features='Deleted Scenes';
+
+11. Which last names are not repeated?
+
+SELECT last_name, COUNT(*) FROM actor GROUP BY last_name HAVING  COUNT(*)=1;
+
+
+12. Which last names appear more than once?
+
+SELECT last_name, COUNT(*) FROM actor GROUP BY last_name HAVING  COUNT(*)>1;
+
+
+13. Which actor has appeared in the most films? ID = 107
+
+SELECT actor_id, COUNT(actor_id) AS most_films FROM film_actor GROUP BY actor_id ORDER BY COUNT(actor_id) DESC LIMIT 1;
+
+
+14. Is ‘Academy Dinosaur’ available for rent from Store 1? 
+
+This code gives all the inventory for academy dinosaur in store 1
+
+SELECT title, f.film_id, i.inventory_id, i.store_id FROM film f JOIN inventory i ON f.film_id=i.film_id WHERE store_id=1 AND i.film_id=1;
+
+
+15. When is ‘Academy Dinosaur’ due? 
+
+This is the last return date out of 12 dates for Academy dinosaur in store1(because inventory id 1,2,3,4 is exclusive to store 1)
+
+SELECT inventory_id, return_date FROM rental WHERE inventory_id BETWEEN 1 AND 4 ORDER BY return_date DESC LIMIT 1;
+
+
+16. What is that average running time of all the films in the database?
+
+SELECT AVG(length) AS avergae_length FROM film;
+
+
+17. What is the average running time of films by category?
+
+SELECT fc.category_id, AVG(f.length) AS lenght_category FROM film f JOIN film_category fc ON f.film_id=fc.film_id GROUP BY fc.category_id;
+
+
+18. How many movies have Robots in them?
+
+
+SELECT COUNT(description) AS films_with_robots FROM film WHERE description LIKE '%robot%';
+
+
+19. Find the movie(s) with the longest runtime.
+
+SELECT length, title FROM film ORDER BY length DESC LIMIT 20;
+
+20. Count how many movies were released in 2010.
+
+SELECT COUNT(release_year) FROM film WHERE release_year=2010;
+
+21. Find the titles of all horror movies.
+
+SELECT title FROM film_list WHERE category='horror';
+
+
+22. Return the full name of the staff member – in a column named full_name – with the ID of 1.
+
+Staff table corrupt
+
+SELECT SUM(first_name + last_name) AS full_name WHERE staff_id=1
+
+
+23. Retrieve all movies that Fred Costner has appeared in.
+
+24. Find out which location has the most copies of BUCKET BROTHERHOOD.
+
+25. How many distinct countries are there?
+
+1. What are the names of all the languages in the database (sorted alphabetically)?
+
+26. Return the full names (first and last) of actors with “son” in their last name, ordered by their first name.
+
+27. Create a list of categories and the number of films for each category.
+
+28. Create a list of actors and the number of movies by each actor.
+
+29. Which actor/actress has appeared in the most movies?
